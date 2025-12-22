@@ -79,6 +79,7 @@ body {
 .channel {
   background: linear-gradient(90deg, #00eaff, #ff00ff);
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
   font-weight: bold;
   text-transform: uppercase;
