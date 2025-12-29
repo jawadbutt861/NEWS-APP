@@ -51,6 +51,7 @@ categorybtn.forEach((item,index)=>{
                     author : `${res.articles[i].author}`,
                     time : `${res.articles[i].publishedAt}`,
                     detail : `${res.articles[i].url}`,
+                    image : `${res.articles[i].urlToImage}`,
                     };
 
                     arr2.push(obj2);
@@ -60,31 +61,37 @@ arr2.map((item)=>{
 
     section.innerHTML +=`
      <div class="news-card">
-      <div class="news-header">
-        <h2 class="news-title">${item.title}</h2>
-        <p class="news-description">
-          ${item.description}
-        </p>
-      </div>
+      ${item.image && item.image !== 'null' ? `<div class="news-image">
+        <img src="${item.image}" alt="${item.title}" onerror="this.parentElement.style.display='none'">
+      </div>` : ''}
+      
+      <div class="news-content-wrapper">
+        <div class="news-header">
+          <h2 class="news-title">${item.title}</h2>
+          <p class="news-description">
+            ${item.description}
+          </p>
+        </div>
 
-      <div class="news-body">
-        <p class="news-content">
-          ${item.content}
-        </p>
-      </div>
+        <div class="news-body">
+          <p class="news-content">
+            ${item.content}
+          </p>
+        </div>
 
-      <div class="news-meta">
-        <span class="channel">${item.channelName}</span>
-        <div class="author">
-          <div class="author-info">
-            <h4>${item.author}</h4>
-            <small>Published on ${item.time}</small>
+        <div class="news-meta">
+          <span class="channel">${item.channelName}</span>
+          <div class="author">
+            <div class="author-info">
+              <h4>${item.author || 'Unknown Author'}</h4>
+              <small>Published on ${new Date(item.time).toLocaleDateString()}</small>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="news-footer">
-        <a href="${item.detail}" target="_blank" class="read-more">Read Full Article →</a>
+        <div class="news-footer">
+          <a href="${item.detail}" target="_blank" class="read-more">Read Full Article →</a>
+        </div>
       </div>
     </div>
     `
@@ -124,6 +131,7 @@ fetch(apiTrending)
         author : `${res.articles[i].author}`,
         time : `${res.articles[i].publishedAt}`,
         detail : `${res.articles[i].url}`,
+        image : `${res.articles[i].urlToImage}`,
     }
     //Pushing required info object to array
     arr.push(obj)
@@ -132,31 +140,37 @@ fetch(apiTrending)
 arr.map((item)=>{
     section.innerHTML +=`
      <div class="news-card">
-      <div class="news-header">
-        <h2 class="news-title">${item.title}</h2>
-        <p class="news-description">
-          ${item.description}
-        </p>
-      </div>
+      ${item.image && item.image !== 'null' ? `<div class="news-image">
+        <img src="${item.image}" alt="${item.title}" onerror="this.parentElement.style.display='none'">
+      </div>` : ''}
+      
+      <div class="news-content-wrapper">
+        <div class="news-header">
+          <h2 class="news-title">${item.title}</h2>
+          <p class="news-description">
+            ${item.description}
+          </p>
+        </div>
 
-      <div class="news-body">
-        <p class="news-content">
-          ${item.content}
-        </p>
-      </div>
+        <div class="news-body">
+          <p class="news-content">
+            ${item.content}
+          </p>
+        </div>
 
-      <div class="news-meta">
-        <span class="channel">${item.channelName}</span>
-        <div class="author">
-          <div class="author-info">
-            <h4>${item.author}</h4>
-            <small>Published on ${item.time}</small>
+        <div class="news-meta">
+          <span class="channel">${item.channelName}</span>
+          <div class="author">
+            <div class="author-info">
+              <h4>${item.author || 'Unknown Author'}</h4>
+              <small>Published on ${new Date(item.time).toLocaleDateString()}</small>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="news-footer">
-        <a href="${item.detail}" target="_blank" class="read-more">Read Full Article →</a>
+        <div class="news-footer">
+          <a href="${item.detail}" target="_blank" class="read-more">Read Full Article →</a>
+        </div>
       </div>
     </div>
     `
