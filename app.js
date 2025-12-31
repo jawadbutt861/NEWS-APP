@@ -13,7 +13,7 @@ function other(){
     <button class="category-btn">${item}</button>
     `});
 
-    let categorybtn = document.querySelectorAll(".category-btn");
+    let categorybtn = document.querySelectorAll(".category-btn"); 
 
 categorybtn.forEach((item,index)=>{
 
